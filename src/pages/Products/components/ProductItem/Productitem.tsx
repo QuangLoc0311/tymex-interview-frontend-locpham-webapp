@@ -1,10 +1,10 @@
 import styles from "./styles.module.scss";
-import Char_1 from "../../../../assets/characters/char_1.png"; // Updated to relative path
-import Char_2 from "../../../../assets/characters/char_2.png"; // Updated to relative path
-import Char_3 from "../../../../assets/characters/char_3.png"; // Updated to relative path
-import Char_4 from "../../../../assets/characters/char_4.png"; // Updated to relative path
-import Char_5 from "../../../../assets/characters/char_5.png"; // Updated to relative path
-import ETH from "../../../../assets/logos_ethereum.png";
+import Char_1 from "src/assets/characters/char_1.png"; // Updated to relative path
+import Char_2 from "src/assets/characters/char_2.png"; // Updated to relative path
+import Char_3 from "src/assets/characters/char_3.png"; // Updated to relative path
+import Char_4 from "src/assets/characters/char_4.png"; // Updated to relative path
+import Char_5 from "src/assets/characters/char_5.png"; // Updated to relative path
+import ETH from "src/assets/logos_ethereum.png";
 import { HeartTwoTone } from "@ant-design/icons";
 import { Avatar } from "antd";
 
