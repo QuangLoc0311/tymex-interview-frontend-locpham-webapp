@@ -1,0 +1,41 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+
+    .child {
+        margin-top: -30px;
+        width: 80%;
+        display: flex;
+        gap: 40px
+    }
+}
+
+.filter {
+    flex: 1;
+    
+}
+
+.productContainer {
+    flex: 2.5;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.products {
+    width: 100%;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill,minmax(215px,1fr));
+    max-height: 68vh;
+    overflow: auto;
+}
+
+.viewMore {
+    margin-top: 40px;
+}
+
