@@ -1,11 +1,12 @@
 import { baseUrlTransform } from "src/configs/core";
 import { useFetchWrapper } from "src/configs/core";
+import {
+  DataType,
+  MetaType,
+  ProductMetadataType,
+} from "src/pages/Products/components/types";
 
-export const ProductService = ({
-  data,
-}: {
-  data?: { [key: string]: string };
-}) => {
+export const ProductService = () => {
   const API = useFetchWrapper();
 
   /**
@@ -14,20 +15,42 @@ export const ProductService = ({
    * @returns The `getProductListData` function is returning the result of calling the `API.get`
    * function with the transformed `baseUrl` and data parameters.
    */
-  const getProductListData = () => {
+  const getProductListData = async (data: MetaType) => {
     const baseUrl = "/products";
 
-    return API.get(baseUrlTransform(baseUrl), {
-      params: {
-        ...data,
-      },
-    });
+    try {
+      const res = await API.get(baseUrlTransform(baseUrl), {
+        params: {
+          ...data,
+          sortBy: data.sortBy?.join(","),
+          sortDirection: data.sortDirection?.join(","),
+        },
+      });
+      return {
+        data: res.data.products as DataType[],
+        total: res.data.total,
+      };
+    } catch (err) {
+      if (typeof err === "string") {
+        throw new Error(err);
+      } else {
+        throw new Error("getProducts: An error occurred");
+      }
+    }
   };
 
-  const getProductMetadata = () => {
-    const baseUrl = "/categories-themes";
-
-    return API.get(baseUrlTransform(baseUrl));
+  const getProductMetadata = async () => {
+    const baseUrl = "/metadata";
+    try {
+      const res = await API.get(baseUrlTransform(baseUrl));
+      return res.data as ProductMetadataType;
+    } catch (err) {
+      if (typeof err === "string") {
+        throw new Error(err);
+      } else {
+        throw new Error("getProductMeta: An error occurred");
+      }
+    }
   };
 
   return {
