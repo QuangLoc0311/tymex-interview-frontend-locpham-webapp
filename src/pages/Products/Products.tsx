@@ -81,9 +81,7 @@ export const Products = () => {
               ))}
             </div>
           ) : (
-            <>
-              <Empty />
-            </>
+            <>{!loading ? <Empty /> : ""}</>
           )}
 
           {loading ? (
