@@ -62,6 +62,13 @@ export const Products = () => {
     fetchProductsRequest(meta);
   }, [meta]);
 
+  const filterCategory = (value: string) => {
+    setMeta((s) => ({
+      ...s,
+      category: value,
+    }));
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.child}>
@@ -74,6 +81,27 @@ export const Products = () => {
           />
         </div>
         <div className={styles.productContainer}>
+          <div className={styles.categoriesFilter}>
+            <div
+              className={`${styles.cateItem} ${
+                meta.category === "" ? styles.active : ""
+              }`}
+              onClick={() => filterCategory("")}
+            >
+              All
+            </div>
+            {productMeta?.categories?.map((item) => (
+              <div
+                key={item}
+                className={`${styles.cateItem} ${
+                  meta.category === item ? styles.active : ""
+                }`}
+                onClick={() => filterCategory(item)}
+              >
+                {item}
+              </div>
+            ))}
+          </div>
           {productList.length ? (
             <div id="products" className={styles.products}>
               {productList?.map((product, index) => (

@@ -1,4 +1,4 @@
-import { Input, Select, Slider } from "antd";
+import { Button, Input, Select, Slider } from "antd";
 import styles from "./styles.module.scss";
 import { SearchOutlined } from "@ant-design/icons";
 import { MetaType, ProductMetadataType } from "../types";
@@ -174,7 +174,7 @@ export const FilterSection = ({
       </div>
 
       <div className={styles.control}>
-        <div onClick={() => setMeta({})}>Reset filter</div>
+        <Button onClick={() => setMeta({})}>Reset filter</Button>
       </div>
     </>
   );

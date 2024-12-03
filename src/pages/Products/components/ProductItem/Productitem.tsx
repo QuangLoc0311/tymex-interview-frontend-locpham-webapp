@@ -41,7 +41,7 @@ export const ProductItem = ({ data }: TProductItem) => {
         <div className={styles.tier}>{data?.tier}</div>
         <img src={getRandomCharacterImage()} />
         <div className={styles.heart}>
-          <HeartTwoTone color="#fd0000" />
+          <HeartTwoTone twoToneColor={data?.isFavorite ? "#fd0000" : ""} />
         </div>
       </div>
       <div className={styles.info}>

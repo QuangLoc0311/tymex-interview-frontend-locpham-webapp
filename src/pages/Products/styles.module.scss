@@ -27,6 +27,37 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    .categoriesFilter {
+        margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+
+        .cateItem {
+            cursor: pointer;
+            padding: 10px 16px;
+            color:  #FFF;
+            font-family: Inter;
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 600;
+            line-height: 24px; 
+            border-radius: 4px;
+            transition: all linear .2s;
+            background: linear-gradient(91deg, rgba(218, 69, 143, 0.40) -6%, rgba(218, 52, 221, 0.40) 113.05%);
+        
+            &:hover {
+                background:  linear-gradient(91deg, #DA458F -6%, #DA34DD 113.05%);
+            }
+        }
+
+        .active {
+            background:  linear-gradient(91deg, #DA458F -6%, #DA34DD 113.05%);
+        }
+    }
+
 }
 
 .products {
@@ -40,6 +71,13 @@
 
 .viewMore {
     margin-top: 40px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    button {
+        width: 30%;
+    }
 }
 
 @media only screen and (max-width: $mobile-devices-size) {
@@ -47,6 +85,7 @@
         .child {
             margin: -30px 10px 20px 10px;
             flex-direction: column;
+            gap: 10px;
         }
     }
 
@@ -56,6 +95,21 @@
 
     .productContainer {
         padding: 0 10px;
+
+        .categoriesFilter {
+            margin-bottom: 20px;
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+
+            .cateItem {
+                padding: 5px 10px;
+                font-size: 12px;
+                line-height: 18px; 
+            
+            }
+        }
     }
 
     .products {

@@ -1,7 +1,7 @@
 @use 'src/styles/variables.scss' as *;
 
 .header {
-    padding: 20px;
+    padding: 10px 20px;
     position: sticky;
     z-index: 100;
     top:0;
@@ -12,6 +12,15 @@
     .navigation {
         .item {
             cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 800;
+            line-height: 20px;
+            text-transform: uppercase;
+            a {
+                color: #FFF;
+            }
         }
     }
 }

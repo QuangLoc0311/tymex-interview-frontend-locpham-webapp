@@ -55,3 +55,28 @@ body {
 .ant-slider-mark-text {
   width: 60px;
 }
+
+.ant-btn {
+  color:  #FFF;
+  text-align: center;
+  font-family: Inter;
+  font-weight: 500;
+  border-radius: 4px;
+  background:  linear-gradient(91deg, #DA458F -6%, #DA34DD 113.05%);
+  box-shadow: 0px 0px 50px 0px rgba(187, 75, 255, 0.32);
+}
+
+.ant-btn:hover {
+  color: #FFF !important;
+  border-color: transparent !important;
+  background:  linear-gradient(91deg, #d51675 -6%, #d80cdb 113.05%) !important;
+  box-shadow: 0px 0px 50px 0px rgba(187, 75, 255, 0.32) !important;
+}
+
+.ant-slider-track {
+  background: linear-gradient(#DA41A2 24.03%, #DA37CE 83.19%);
+}
+
+.ant-slider .ant-slider-handle::after {
+  box-shadow: 0 0 0 2px #DA37CE;
+}
