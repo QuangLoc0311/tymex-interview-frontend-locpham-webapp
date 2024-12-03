@@ -1,11 +1,12 @@
-import { Button } from "antd";
+import { Button, Empty, Spin } from "antd";
 import { FilterSection } from "./components/FilterSection/FilterSection";
 import { ProductItem } from "./components/ProductItem/Productitem";
 import styles from "./styles.module.scss";
 import { ProductService } from "src/services/Product/ProductService";
-import { useMount } from "react-use";
+import { useMount, useUpdateEffect } from "react-use";
 import { useState } from "react";
 import { DataType, MetaType, ProductMetadataType } from "./components/types";
+import { LoadingOutlined } from "@ant-design/icons";
 
 export const Products = () => {
   const [productList, setProductList] = useState<DataType[]>([]);
@@ -13,6 +14,7 @@ export const Products = () => {
     sortBy: [],
     sortDirection: [],
   });
+  const [loading, setLoading] = useState(false);
   const [productMeta, setProductMeta] = useState<ProductMetadataType>();
   const [paginationData, setPaginationData] = useState<{
     lastItemId?: number;
@@ -20,19 +22,19 @@ export const Products = () => {
   }>({ total: 0 });
 
   const fetchProductsRequest = async (data?: MetaType, loadMore?: boolean) => {
+    setLoading(true);
     const response = await ProductService().getProductListData(data);
     const productData = response.data;
-    if (productData) {
-      if (loadMore) {
-        setProductList([...productList, ...productData]);
-      } else {
-        setProductList([...productData]);
-      }
-      setPaginationData({
-        lastItemId: productData[productData.length - 1]?.id,
-        total: response.total,
-      });
+    if (loadMore) {
+      setProductList([...productList, ...productData]);
+    } else {
+      setProductList([...productData]);
     }
+    setPaginationData({
+      lastItemId: productData[productData.length - 1]?.id,
+      total: response.total,
+    });
+    setLoading(false);
   };
 
   const fetchProductMeta = async () => {
@@ -56,6 +58,10 @@ export const Products = () => {
     }
   };
 
+  useUpdateEffect(() => {
+    fetchProductsRequest(meta);
+  }, [meta]);
+
   return (
     <div className={styles.container}>
       <div className={styles.child}>
@@ -68,20 +74,32 @@ export const Products = () => {
           />
         </div>
         <div className={styles.productContainer}>
-          <div id="products" className={styles.products}>
-            {productList?.map((product, index) => (
-              <ProductItem key={product.id + index} data={product} />
-            ))}
-          </div>
-
-          {paginationData.total > productList?.length ? (
-            <div className={styles.viewMore}>
-              <Button size="large" onClick={() => loadMore()}>
-                View more
-              </Button>
-            </div>
+          {loading ? (
+            <Spin indicator={<LoadingOutlined spin />} size="large" />
           ) : (
-            ""
+            <>
+              {productList.length ? (
+                <div id="products" className={styles.products}>
+                  {productList?.map((product, index) => (
+                    <ProductItem key={product.id + index} data={product} />
+                  ))}
+                </div>
+              ) : (
+                <>
+                  <Empty />
+                </>
+              )}
+
+              {paginationData.total > productList?.length ? (
+                <div className={styles.viewMore}>
+                  <Button size="large" onClick={() => loadMore()}>
+                    View more
+                  </Button>
+                </div>
+              ) : (
+                ""
+              )}
+            </>
           )}
         </div>
       </div>

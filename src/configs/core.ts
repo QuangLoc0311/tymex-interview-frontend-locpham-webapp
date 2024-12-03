@@ -48,7 +48,6 @@ const useFetchWrapper = () => {
     headers: {
       "Content-Type": "application/json",
       Accept: "*/*",
-      Connection: "keep-alive",
     },
   });
   withErrorHandler(API);
