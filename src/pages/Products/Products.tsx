@@ -4,7 +4,7 @@ import { ProductItem } from "./components/ProductItem/Productitem";
 import styles from "./styles.module.scss";
 import { ProductService } from "src/services/Product/ProductService";
 import { useMount } from "react-use";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { DataType, MetaType, ProductMetadataType } from "./components/types";
 
 export const Products = () => {
@@ -19,7 +19,7 @@ export const Products = () => {
     total: number;
   }>({ total: 0 });
 
-  const fetchProductsRequest = async (data: MetaType, loadMore?: boolean) => {
+  const fetchProductsRequest = async (data?: MetaType, loadMore?: boolean) => {
     const response = await ProductService().getProductListData(data);
     const productData = response.data;
     if (productData) {
@@ -56,11 +56,6 @@ export const Products = () => {
     }
   };
 
-  useEffect(() => {
-    fetchProductsRequest(meta);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [meta]);
-
   return (
     <div className={styles.container}>
       <div className={styles.child}>
@@ -69,6 +64,7 @@ export const Products = () => {
             productMeta={productMeta}
             meta={meta}
             setMeta={setMeta}
+            refetch={(meta: MetaType) => fetchProductsRequest(meta)}
           />
         </div>
         <div className={styles.productContainer}>

@@ -2,16 +2,44 @@ import { Button, Input, Select, Slider } from "antd";
 import styles from "./styles.module.scss";
 import { SearchOutlined } from "@ant-design/icons";
 import { MetaType, ProductMetadataType } from "../types";
+import { useState } from "react";
+import { useDebounce } from "src/hooks/useDebounce";
+import { useUpdateEffect } from "react-use";
 
 export const FilterSection = ({
   productMeta,
   meta,
   setMeta,
+  refetch,
 }: {
   productMeta?: ProductMetadataType;
   meta: MetaType;
   setMeta: React.Dispatch<React.SetStateAction<MetaType>>;
+  refetch: (meta: MetaType) => void;
 }) => {
+  const [searchTerm, setSearchTerm] = useState(meta.search || "");
+  const [priceRange, setPriceRange] = useState<number[]>([
+    meta.minPrice || 50,
+    meta.maxPrice || 150,
+  ]);
+
+  const debouncedSearchTerm = useDebounce(searchTerm, 300) as string;
+  const debouncedPriceRange = useDebounce(
+    `${priceRange[0]}, ${priceRange[1]}`,
+    300
+  ) as string;
+
+  useUpdateEffect(() => {
+    if (debouncedSearchTerm) {
+      refetch({
+        ...meta,
+        search: debouncedSearchTerm,
+        minPrice: parseFloat(debouncedPriceRange.split(",")[0]),
+        maxPrice: parseFloat(debouncedPriceRange.split(",")[1]),
+      });
+    }
+  }, [debouncedSearchTerm, debouncedPriceRange]);
+
   const updateSortMeta = (s: MetaType, key: string, value: string) => {
     const index = s.sortBy?.indexOf(key);
     return {
@@ -31,15 +59,10 @@ export const FilterSection = ({
     <>
       <Input
         size="large"
-        value={meta.search}
+        value={searchTerm}
         addonBefore={<SearchOutlined />}
         placeholder="Quick search"
-        onChange={(e) =>
-          setMeta((s) => ({
-            ...s,
-            search: e.target.value,
-          }))
-        }
+        onChange={(e) => setSearchTerm(e.target.value)}
       />
       <div className={styles.filterBlock}>
         <label>Price</label>
@@ -50,15 +73,9 @@ export const FilterSection = ({
           tooltip={{ autoAdjustOverflow: true }}
           range={{ draggableTrack: true }}
           defaultValue={[50, 150]}
-          value={[meta.minPrice || 50, meta.maxPrice || 150]}
+          value={priceRange}
           marks={{ 0: "0.00 ETH", 200: "200 ETH" }}
-          onChange={(value: number[]) =>
-            setMeta((s) => ({
-              ...s,
-              minPrice: value[0],
-              maxPrice: value[1],
-            }))
-          }
+          onChange={(value: number[]) => setPriceRange(value)}
         />
       </div>
 

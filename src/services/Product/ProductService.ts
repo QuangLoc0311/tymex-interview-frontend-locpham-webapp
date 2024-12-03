@@ -15,15 +15,15 @@ export const ProductService = () => {
    * @returns The `getProductListData` function is returning the result of calling the `API.get`
    * function with the transformed `baseUrl` and data parameters.
    */
-  const getProductListData = async (data: MetaType) => {
+  const getProductListData = async (data?: MetaType) => {
     const baseUrl = "/products";
 
     try {
       const res = await API.get(baseUrlTransform(baseUrl), {
         params: {
           ...data,
-          sortBy: data.sortBy?.join(","),
-          sortDirection: data.sortDirection?.join(","),
+          sortBy: data?.sortBy?.join(","),
+          sortDirection: data?.sortDirection?.join(","),
         },
       });
       return {
