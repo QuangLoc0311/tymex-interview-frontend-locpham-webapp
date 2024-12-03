@@ -1,3 +1,5 @@
+@use 'src/styles/variables.scss' as *;
+
 .container {
     display: flex;
     flex-direction: column;
@@ -6,8 +8,8 @@
     width: 100%;
 
     .child {
-        margin-top: -30px;
-        width: 90%;
+        margin: -30px 20px 20px 20px;
+        width: 100%;
         display: flex;
         gap: 40px;
         max-width: 1200px;
@@ -32,7 +34,6 @@
     display: grid;
     gap: 30px;
     grid-template-columns: repeat(auto-fill,minmax(215px,1fr));
-    max-height: 68vh;
     overflow: auto;
     overflow-x: hidden;
 }
@@ -41,3 +42,25 @@
     margin-top: 40px;
 }
 
+@media only screen and (max-width: $mobile-devices-size) {
+    .container {
+        .child {
+            margin: -30px 10px 20px 10px;
+            flex-direction: column;
+        }
+    }
+
+    .filter {
+        padding: 0 10px;
+    }
+
+    .productContainer {
+        padding: 0 10px;
+    }
+
+    .products {
+        gap: 15px;
+        row-gap: 15px;
+        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
+    }
+}

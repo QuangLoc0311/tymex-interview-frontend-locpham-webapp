@@ -74,32 +74,32 @@ export const Products = () => {
           />
         </div>
         <div className={styles.productContainer}>
+          {productList.length ? (
+            <div id="products" className={styles.products}>
+              {productList?.map((product, index) => (
+                <ProductItem key={product.id + index} data={product} />
+              ))}
+            </div>
+          ) : (
+            <>
+              <Empty />
+            </>
+          )}
+
           {loading ? (
             <Spin indicator={<LoadingOutlined spin />} size="large" />
           ) : (
-            <>
-              {productList.length ? (
-                <div id="products" className={styles.products}>
-                  {productList?.map((product, index) => (
-                    <ProductItem key={product.id + index} data={product} />
-                  ))}
-                </div>
-              ) : (
-                <>
-                  <Empty />
-                </>
-              )}
+            ""
+          )}
 
-              {paginationData.total > productList?.length ? (
-                <div className={styles.viewMore}>
-                  <Button size="large" onClick={() => loadMore()}>
-                    View more
-                  </Button>
-                </div>
-              ) : (
-                ""
-              )}
-            </>
+          {paginationData.total > productList?.length ? (
+            <div className={styles.viewMore}>
+              <Button size="large" onClick={() => loadMore()}>
+                View more
+              </Button>
+            </div>
+          ) : (
+            ""
           )}
         </div>
       </div>

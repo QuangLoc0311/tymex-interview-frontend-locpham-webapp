@@ -1,3 +1,5 @@
+@use 'src/styles/variables.scss' as *;
+
 .filterBlock {
     margin-top: 20px;
     display: flex;
@@ -21,4 +23,23 @@
     align-items: center;
     gap: 20px;
     justify-content: flex-start;
+}
+
+@media only screen and (max-width: $mobile-devices-size) {
+    .filterBlock {
+        margin-top: 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    
+        label {
+            font-size: 12px;
+            line-height: 14px; 
+        }
+    }
+    
+    .control {
+        margin-top: 10px;
+        gap: 15px;
+    }
 }
