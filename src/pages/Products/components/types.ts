@@ -2,12 +2,12 @@ export type DataType = {
   id: number;
   title: string;
   category: string;
-  price: string;
-  isFavorite: string;
-  createdAt: string;
+  price: number;
+  isFavorite: boolean;
+  createdAt: number;
   theme: string;
   tier: string;
-  imageId: string;
+  imageId: number;
   author: AuthorDataType;
 };
 

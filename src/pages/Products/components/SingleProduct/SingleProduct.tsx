@@ -30,7 +30,7 @@ export const SingleProduct = ({ data }: TProductItem) => {
   return (
     <div
       data-testid="single-product"
-      id="productItem"
+      id="product-item"
       className={styles.container}
     >
       <div
@@ -42,16 +42,20 @@ export const SingleProduct = ({ data }: TProductItem) => {
           ]
         }`}
       >
-        <div className={styles.tier}>{data?.tier}</div>
-        <img src={getRandomCharacterImage()} />
+        <div id="single-product-tier" className={styles.tier}>
+          {data?.tier}
+        </div>
+        <img id="single-product-image" src={getRandomCharacterImage()} />
         <div className={styles.heart}>
           <HeartTwoTone twoToneColor={data?.isFavorite ? "#fd0000" : ""} />
         </div>
       </div>
       <div className={styles.info}>
         <div className={styles.product}>
-          <div className={styles.name}>{data?.title}</div>
-          <div className={styles.price}>
+          <div id="single-product-name" className={styles.name}>
+            {data?.title}
+          </div>
+          <div id="single-product-price" className={styles.price}>
             <img src={ETH} />
             <div>{data?.price} ETH</div>
           </div>
@@ -63,6 +67,7 @@ export const SingleProduct = ({ data }: TProductItem) => {
             src={data?.author?.avatar}
           />
           <div
+            id="single-product-author"
             className={styles.authorName}
           >{`${data?.author.firstName} ${data?.author?.lastName}`}</div>
         </div>

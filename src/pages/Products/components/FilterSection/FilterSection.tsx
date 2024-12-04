@@ -14,8 +14,8 @@ export const FilterSection = ({
 }: {
   productMeta?: ProductMetadataType;
   meta: MetaType;
-  setMeta: React.Dispatch<React.SetStateAction<MetaType>>;
-  refetch: (meta: MetaType) => void;
+  setMeta?: React.Dispatch<React.SetStateAction<MetaType>>;
+  refetch?: (meta: MetaType) => void;
 }) => {
   const [searchTerm, setSearchTerm] = useState(meta.search || "");
   const [priceRange, setPriceRange] = useState<number[]>([
@@ -30,7 +30,7 @@ export const FilterSection = ({
   ) as string;
 
   useUpdateEffect(() => {
-    if (debouncedSearchTerm) {
+    if (debouncedSearchTerm && refetch) {
       refetch({
         ...meta,
         search: debouncedSearchTerm,
@@ -88,12 +88,13 @@ export const FilterSection = ({
           showSearch
           placeholder="Select tier"
           optionFilterProp="label"
-          onChange={(value) =>
-            setMeta((s) => ({
-              ...s,
-              tier: value,
-            }))
-          }
+          onChange={(value) => {
+            if (setMeta)
+              setMeta((s) => ({
+                ...s,
+                tier: value,
+              }));
+          }}
           options={productMeta?.tiers?.map((item) => ({
             label: item,
             value: item,
@@ -108,12 +109,13 @@ export const FilterSection = ({
           showSearch
           placeholder="Select theme"
           optionFilterProp="label"
-          onChange={(value) =>
-            setMeta((s) => ({
-              ...s,
-              theme: value,
-            }))
-          }
+          onChange={(value) => {
+            if (setMeta)
+              setMeta((s) => ({
+                ...s,
+                theme: value,
+              }));
+          }}
           options={productMeta?.themes?.map((item) => ({
             label: item,
             value: item,
@@ -127,9 +129,11 @@ export const FilterSection = ({
           showSearch
           placeholder="Select time"
           optionFilterProp="label"
-          onChange={(value) =>
-            setMeta((s) => updateSortMeta(s, "createdAt", value))
-          }
+          onChange={(value) => {
+            if (setMeta) {
+              setMeta((s) => updateSortMeta(s, "createdAt", value));
+            }
+          }}
           value={
             meta.sortBy?.includes("price")
               ? meta.sortDirection?.[meta.sortBy.indexOf("createdAt")]
@@ -154,9 +158,11 @@ export const FilterSection = ({
           showSearch
           placeholder="Select price order"
           optionFilterProp="label"
-          onChange={(value) =>
-            setMeta((s) => updateSortMeta(s, "price", value))
-          }
+          onChange={(value) => {
+            if (setMeta) {
+              setMeta((s) => updateSortMeta(s, "price", value));
+            }
+          }}
           value={
             meta.sortBy?.includes("price")
               ? meta.sortDirection?.[meta.sortBy.indexOf("price")]
@@ -176,7 +182,13 @@ export const FilterSection = ({
       </div>
 
       <div data-testid="reset-filter" className={styles.control}>
-        <Button onClick={() => setMeta({})}>Reset filter</Button>
+        <Button
+          onClick={() => {
+            if (setMeta) setMeta({});
+          }}
+        >
+          Reset filter
+        </Button>
       </div>
     </>
   );
