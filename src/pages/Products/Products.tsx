@@ -79,7 +79,7 @@ export const Products = () => {
   return (
     <div className={styles.container}>
       <div className={styles.child}>
-        <div id="filter" className={styles.filter}>
+        <div data-testid="product-filter" id="filter" className={styles.filter}>
           <FilterSection
             productMeta={productMeta}
             meta={meta}
@@ -87,7 +87,7 @@ export const Products = () => {
             refetch={(meta: MetaType) => fetchProductsRequest(meta)}
           />
         </div>
-        <div className={styles.productContainer}>
+        <div data-testid="product-list" className={styles.productContainer}>
           <div className={styles.categoriesFilter}>
             <div
               className={`${styles.cateItem} ${

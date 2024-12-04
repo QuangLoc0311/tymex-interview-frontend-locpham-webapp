@@ -28,7 +28,11 @@ export const SingleProduct = ({ data }: TProductItem) => {
   };
 
   return (
-    <div id="productItem" className={styles.container}>
+    <div
+      data-testid="single-product"
+      id="productItem"
+      className={styles.container}
+    >
       <div
         className={`${styles.image} ${
           styles[

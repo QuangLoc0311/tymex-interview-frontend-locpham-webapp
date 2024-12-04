@@ -29,5 +29,5 @@
       "configs": ["./src/configs/*"],
     }
   },
-  "include": ["src"]
+  "include": ["cypress", "src"]
 }

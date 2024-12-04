@@ -57,14 +57,16 @@ export const FilterSection = ({
 
   return (
     <>
-      <Input
-        size="large"
-        value={searchTerm}
-        addonBefore={<SearchOutlined />}
-        placeholder="Quick search"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
-      <div className={styles.filterBlock}>
+      <div data-testid="search-filter">
+        <Input
+          size="large"
+          value={searchTerm}
+          addonBefore={<SearchOutlined />}
+          placeholder="Quick search"
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+      </div>
+      <div data-testid="price-range-filter" className={styles.filterBlock}>
         <label>Price</label>
         <Slider
           max={200}
@@ -79,7 +81,7 @@ export const FilterSection = ({
         />
       </div>
 
-      <div className={styles.filterBlock}>
+      <div data-testid="tier-filter" className={styles.filterBlock}>
         <label>Tier</label>
         <Select
           value={meta.tier}
@@ -99,7 +101,7 @@ export const FilterSection = ({
         />
       </div>
 
-      <div className={styles.filterBlock}>
+      <div data-testid="theme-filter" className={styles.filterBlock}>
         <label>Theme</label>
         <Select
           value={meta.theme}
@@ -119,7 +121,7 @@ export const FilterSection = ({
         />
       </div>
 
-      <div className={styles.filterBlock}>
+      <div data-testid="time-sort-filter" className={styles.filterBlock}>
         <label>Time</label>
         <Select
           showSearch
@@ -146,7 +148,7 @@ export const FilterSection = ({
         />
       </div>
 
-      <div className={styles.filterBlock}>
+      <div data-testid="price-sort-filter" className={styles.filterBlock}>
         <label>Price</label>
         <Select
           showSearch
@@ -173,7 +175,7 @@ export const FilterSection = ({
         />
       </div>
 
-      <div className={styles.control}>
+      <div data-testid="reset-filter" className={styles.control}>
         <Button onClick={() => setMeta({})}>Reset filter</Button>
       </div>
     </>
