@@ -1,6 +1,6 @@
 import { Button, Empty, Spin } from "antd";
 import { FilterSection } from "./components/FilterSection/FilterSection";
-import { ProductItem } from "./components/ProductItem/Productitem";
+import { ProductItem } from "./components/ProductItem/ProductItem";
 import styles from "./styles.module.scss";
 import { ProductService } from "src/services/Product/ProductService";
 import { useMount, useUpdateEffect } from "react-use";
@@ -10,6 +10,7 @@ import { LoadingOutlined } from "@ant-design/icons";
 
 export const Products = () => {
   const [productList, setProductList] = useState<DataType[]>([]);
+  const [showEmpty, setShowEmpty] = useState(false);
   const [meta, setMeta] = useState<MetaType>({
     sortBy: [],
     sortDirection: [],
@@ -29,6 +30,12 @@ export const Products = () => {
       setProductList([...productList, ...productData]);
     } else {
       setProductList([...productData]);
+    }
+    if (
+      (!loadMore && !productData.length) ||
+      (!productList.length && !productData.length)
+    ) {
+      setShowEmpty(true);
     }
     setPaginationData({
       lastItemId: productData[productData.length - 1]?.id,
@@ -109,7 +116,7 @@ export const Products = () => {
               ))}
             </div>
           ) : (
-            <>{!loading ? <Empty /> : ""}</>
+            <>{!loading && showEmpty ? <Empty /> : ""}</>
           )}
 
           {loading ? (

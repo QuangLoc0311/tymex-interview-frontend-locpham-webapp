@@ -2,7 +2,6 @@
   "name": "tymex-interview-frontend-locpham-webapp",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
@@ -31,6 +30,8 @@
     "@types/react-dom": "^18.3.1",
     "@types/react-transition-group": "^4.4.11",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "cypress": "^13.16.0",
+    "cypress-vite": "^1.5.0",
     "eslint": "^9.15.0",
     "eslint-plugin-react-hooks": "^5.0.0",
     "eslint-plugin-react-refresh": "^0.4.14",
