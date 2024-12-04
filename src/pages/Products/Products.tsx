@@ -1,12 +1,12 @@
 import { Button, Empty, Spin } from "antd";
 import { FilterSection } from "./components/FilterSection/FilterSection";
-import { ProductItem } from "./components/ProductItem/ProductItem";
 import styles from "./styles.module.scss";
 import { ProductService } from "src/services/Product/ProductService";
 import { useMount, useUpdateEffect } from "react-use";
 import { useState } from "react";
 import { DataType, MetaType, ProductMetadataType } from "./components/types";
 import { LoadingOutlined } from "@ant-design/icons";
+import { SingleProduct } from "./components/SingleProduct/SingleProduct";
 
 export const Products = () => {
   const [productList, setProductList] = useState<DataType[]>([]);
@@ -112,7 +112,7 @@ export const Products = () => {
           {productList.length ? (
             <div id="products" className={styles.products}>
               {productList?.map((product, index) => (
-                <ProductItem key={product.id + index} data={product} />
+                <SingleProduct key={product.id + index} data={product} />
               ))}
             </div>
           ) : (

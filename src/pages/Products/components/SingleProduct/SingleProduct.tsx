@@ -15,7 +15,7 @@ type TProductItem = {
   data?: DataType;
 };
 
-export const ProductItem = ({ data }: TProductItem) => {
+export const SingleProduct = ({ data }: TProductItem) => {
   const [randomCharacterIndex, setRandomCharacterIndex] = useState<number>(0);
   const characterImages = [Char_1, Char_2, Char_3, Char_4, Char_5];
 
