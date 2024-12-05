@@ -1,12 +1,13 @@
-import { Button, Empty, Spin } from 'antd';
+import { Button, Empty, Skeleton, Spin } from 'antd';
 import { FilterSection } from './components/FilterSection/FilterSection';
 import styles from './styles.module.scss';
 import { ProductService } from 'src/services/Product/ProductService';
 import { useMount, useUpdateEffect } from 'react-use';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { DataType, MetaType, ProductMetadataType } from './components/types';
 import { LoadingOutlined } from '@ant-design/icons';
 import { SingleProduct } from './components/SingleProduct/SingleProduct';
+import { isMobile } from 'react-device-detect';
 
 export const Products = () => {
   const [productList, setProductList] = useState<DataType[]>([]);
@@ -16,6 +17,7 @@ export const Products = () => {
     sortDirection: [],
   });
   const [loading, setLoading] = useState(false);
+  const [loadingMeta, setLoadingMeta] = useState(false);
   const [productMeta, setProductMeta] = useState<ProductMetadataType>();
   const [paginationData, setPaginationData] = useState<{
     lastItemId?: number;
@@ -44,11 +46,21 @@ export const Products = () => {
     setLoading(false);
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchProductsRequest(meta);
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [meta]);
+
   const fetchProductMeta = async () => {
+    setLoadingMeta(true);
     const response = await ProductService().getProductMetadata();
     if (response) {
       setProductMeta(response);
     }
+    setLoadingMeta(false);
   };
 
   useMount(() => {
@@ -97,26 +109,64 @@ export const Products = () => {
             >
               All
             </div>
-            {productMeta?.categories?.map((item) => (
-              <div
-                key={item}
-                className={`${styles.cateItem} ${
-                  meta.category === item ? styles.active : ''
-                }`}
-                onClick={() => filterCategory(item)}
-              >
-                {item}
-              </div>
-            ))}
+            {loadingMeta ? (
+              <>
+                {Array.from({ length: 12 }).map((_, index) => (
+                  <Skeleton.Button key={index} active size="large" />
+                ))}
+              </>
+            ) : (
+              <>
+                {productMeta?.categories?.map((item) => (
+                  <div
+                    key={item}
+                    className={`${styles.cateItem} ${
+                      meta.category === item ? styles.active : ''
+                    }`}
+                    onClick={() => filterCategory(item)}
+                  >
+                    {item}
+                  </div>
+                ))}
+              </>
+            )}
           </div>
-          {productList.length ? (
-            <div id="products" className={styles.products}>
-              {productList?.map((product, index) => (
-                <SingleProduct key={product.id + index} data={product} />
-              ))}
+
+          <div id="products" className={styles.products}>
+            {productList?.length ? (
+              <>
+                {productList?.map((product, index) => (
+                  <SingleProduct key={product.id + index} data={product} />
+                ))}
+              </>
+            ) : (
+              <>
+                {loading ? (
+                  <>
+                    {Array.from({ length: 8 })?.map((_, index) => (
+                      <Skeleton.Node
+                        key={index}
+                        active
+                        style={{
+                          width: '100%',
+                          minHeight: isMobile ? '160px' : '210px',
+                        }}
+                      />
+                    ))}
+                  </>
+                ) : (
+                  ''
+                )}
+              </>
+            )}
+          </div>
+
+          {!loading && showEmpty ? (
+            <div className={styles.emptyBlock}>
+              <Empty />
             </div>
           ) : (
-            <>{!loading && showEmpty ? <Empty /> : ''}</>
+            ''
           )}
 
           {loading ? (
