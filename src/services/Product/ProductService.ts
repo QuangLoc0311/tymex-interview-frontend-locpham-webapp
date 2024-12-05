@@ -39,6 +39,14 @@ export const ProductService = () => {
     }
   };
 
+  /**
+   * The function `getProductMetadata` fetches product metadata from a specified URL and returns it as
+   * a `ProductMetadataType`.
+   * @returns The `getProductMetadata` function is returning the product metadata fetched from the API
+   * endpoint `/metadata`. The product metadata is expected to be of type `ProductMetadataType`. If the
+   * API call is successful, the function will return the product metadata data. If an error occurs
+   * during the API call, it will throw an error message indicating the type of error that occurred.
+   */
   const getProductMetadata = async () => {
     const baseUrl = '/metadata';
     try {
