@@ -1,6 +1,5 @@
 import { Button, Flex } from 'antd';
 import styles from './styles.module.scss';
-import { isMobile } from 'react-device-detect'; // sometimes true even on Chrome MS
 import { Link } from 'react-router';
 import { CloseOutlined, MenuOutlined } from '@ant-design/icons';
 import { useState } from 'react';
