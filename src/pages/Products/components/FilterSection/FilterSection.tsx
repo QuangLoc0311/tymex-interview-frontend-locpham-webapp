@@ -1,10 +1,10 @@
-import { Button, Input, Select, Slider } from "antd";
-import styles from "./styles.module.scss";
-import { SearchOutlined } from "@ant-design/icons";
-import { MetaType, ProductMetadataType } from "../types";
-import { useState } from "react";
-import { useDebounce } from "src/hooks/useDebounce";
-import { useUpdateEffect } from "react-use";
+import { Button, Input, Select, Slider } from 'antd';
+import styles from './styles.module.scss';
+import { SearchOutlined } from '@ant-design/icons';
+import { MetaType, ProductMetadataType } from '../types';
+import { useState } from 'react';
+import { useDebounce } from 'src/hooks/useDebounce';
+import { useUpdateEffect } from 'react-use';
 
 export const FilterSection = ({
   productMeta,
@@ -17,7 +17,7 @@ export const FilterSection = ({
   setMeta?: React.Dispatch<React.SetStateAction<MetaType>>;
   refetch?: (meta: MetaType) => void;
 }) => {
-  const [searchTerm, setSearchTerm] = useState(meta.search || "");
+  const [searchTerm, setSearchTerm] = useState(meta.search || '');
   const [priceRange, setPriceRange] = useState<number[]>([
     meta.minPrice || 50,
     meta.maxPrice || 150,
@@ -34,8 +34,8 @@ export const FilterSection = ({
       refetch({
         ...meta,
         search: debouncedSearchTerm,
-        minPrice: parseFloat(debouncedPriceRange.split(",")[0]),
-        maxPrice: parseFloat(debouncedPriceRange.split(",")[1]),
+        minPrice: parseFloat(debouncedPriceRange.split(',')[0]),
+        maxPrice: parseFloat(debouncedPriceRange.split(',')[1]),
       });
     }
   }, [debouncedSearchTerm, debouncedPriceRange]);
@@ -76,7 +76,7 @@ export const FilterSection = ({
           range={{ draggableTrack: true }}
           defaultValue={[50, 150]}
           value={priceRange}
-          marks={{ 0: "0.00 ETH", 200: "200 ETH" }}
+          marks={{ 0: '0.00 ETH', 200: '200 ETH' }}
           onChange={(value: number[]) => setPriceRange(value)}
         />
       </div>
@@ -131,22 +131,22 @@ export const FilterSection = ({
           optionFilterProp="label"
           onChange={(value) => {
             if (setMeta) {
-              setMeta((s) => updateSortMeta(s, "createdAt", value));
+              setMeta((s) => updateSortMeta(s, 'createdAt', value));
             }
           }}
           value={
-            meta.sortBy?.includes("price")
-              ? meta.sortDirection?.[meta.sortBy.indexOf("createdAt")]
+            meta.sortBy?.includes('price')
+              ? meta.sortDirection?.[meta.sortBy.indexOf('createdAt')]
               : undefined
           }
           options={[
             {
-              value: "desc",
-              label: "Lastest",
+              value: 'desc',
+              label: 'Lastest',
             },
             {
-              value: "asc",
-              label: "Oldest",
+              value: 'asc',
+              label: 'Oldest',
             },
           ]}
         />
@@ -160,22 +160,22 @@ export const FilterSection = ({
           optionFilterProp="label"
           onChange={(value) => {
             if (setMeta) {
-              setMeta((s) => updateSortMeta(s, "price", value));
+              setMeta((s) => updateSortMeta(s, 'price', value));
             }
           }}
           value={
-            meta.sortBy?.includes("price")
-              ? meta.sortDirection?.[meta.sortBy.indexOf("price")]
+            meta.sortBy?.includes('price')
+              ? meta.sortDirection?.[meta.sortBy.indexOf('price')]
               : undefined
           }
           options={[
             {
-              value: "asc",
-              label: "Low to high",
+              value: 'asc',
+              label: 'Low to high',
             },
             {
-              value: "desc",
-              label: "High to low",
+              value: 'desc',
+              label: 'High to low',
             },
           ]}
         />

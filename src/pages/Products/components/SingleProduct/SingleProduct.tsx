@@ -1,15 +1,15 @@
-import styles from "./styles.module.scss";
-import { useState, useEffect } from "react";
-import Char_1 from "src/assets/characters/char_1.png";
-import Char_2 from "src/assets/characters/char_2.png";
-import Char_3 from "src/assets/characters/char_3.png";
-import Char_4 from "src/assets/characters/char_4.png";
-import Char_5 from "src/assets/characters/char_5.png";
-import ETH from "src/assets/logos_ethereum.png";
-import { HeartTwoTone } from "@ant-design/icons";
-import { Avatar } from "antd";
-import { DataType } from "../types";
-import { TIER_RANGE } from "src/configs/utils";
+import styles from './styles.module.scss';
+import { useState, useEffect } from 'react';
+import Char_1 from 'src/assets/characters/char_1.png';
+import Char_2 from 'src/assets/characters/char_2.png';
+import Char_3 from 'src/assets/characters/char_3.png';
+import Char_4 from 'src/assets/characters/char_4.png';
+import Char_5 from 'src/assets/characters/char_5.png';
+import ETH from 'src/assets/logos_ethereum.png';
+import { HeartTwoTone } from '@ant-design/icons';
+import { Avatar } from 'antd';
+import { DataType } from '../types';
+import { TIER_RANGE } from 'src/configs/utils';
 
 type TProductItem = {
   data?: DataType;
@@ -36,9 +36,9 @@ export const SingleProduct = ({ data }: TProductItem) => {
       <div
         className={`${styles.image} ${
           styles[
-            TIER_RANGE?.includes(data?.category?.toLocaleLowerCase() || "")
-              ? data?.category?.toLocaleLowerCase() || ""
-              : "common"
+            TIER_RANGE?.includes(data?.category?.toLocaleLowerCase() || '')
+              ? data?.category?.toLocaleLowerCase() || ''
+              : 'common'
           ]
         }`}
       >
@@ -47,7 +47,7 @@ export const SingleProduct = ({ data }: TProductItem) => {
         </div>
         <img id="single-product-image" src={getRandomCharacterImage()} />
         <div className={styles.heart}>
-          <HeartTwoTone twoToneColor={data?.isFavorite ? "#fd0000" : ""} />
+          <HeartTwoTone twoToneColor={data?.isFavorite ? '#fd0000' : ''} />
         </div>
       </div>
       <div className={styles.info}>
@@ -63,7 +63,7 @@ export const SingleProduct = ({ data }: TProductItem) => {
 
         <div className={styles.author}>
           <Avatar
-            style={{ width: "32px", background: "#ffffff" }}
+            style={{ width: '32px', background: '#ffffff' }}
             src={data?.author?.avatar}
           />
           <div

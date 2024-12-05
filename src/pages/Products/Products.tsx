@@ -1,12 +1,12 @@
-import { Button, Empty, Spin } from "antd";
-import { FilterSection } from "./components/FilterSection/FilterSection";
-import styles from "./styles.module.scss";
-import { ProductService } from "src/services/Product/ProductService";
-import { useMount, useUpdateEffect } from "react-use";
-import { useState } from "react";
-import { DataType, MetaType, ProductMetadataType } from "./components/types";
-import { LoadingOutlined } from "@ant-design/icons";
-import { SingleProduct } from "./components/SingleProduct/SingleProduct";
+import { Button, Empty, Spin } from 'antd';
+import { FilterSection } from './components/FilterSection/FilterSection';
+import styles from './styles.module.scss';
+import { ProductService } from 'src/services/Product/ProductService';
+import { useMount, useUpdateEffect } from 'react-use';
+import { useState } from 'react';
+import { DataType, MetaType, ProductMetadataType } from './components/types';
+import { LoadingOutlined } from '@ant-design/icons';
+import { SingleProduct } from './components/SingleProduct/SingleProduct';
 
 export const Products = () => {
   const [productList, setProductList] = useState<DataType[]>([]);
@@ -91,9 +91,9 @@ export const Products = () => {
           <div className={styles.categoriesFilter}>
             <div
               className={`${styles.cateItem} ${
-                meta.category === "" ? styles.active : ""
+                meta.category === '' ? styles.active : ''
               }`}
-              onClick={() => filterCategory("")}
+              onClick={() => filterCategory('')}
             >
               All
             </div>
@@ -101,7 +101,7 @@ export const Products = () => {
               <div
                 key={item}
                 className={`${styles.cateItem} ${
-                  meta.category === item ? styles.active : ""
+                  meta.category === item ? styles.active : ''
                 }`}
                 onClick={() => filterCategory(item)}
               >
@@ -116,13 +116,13 @@ export const Products = () => {
               ))}
             </div>
           ) : (
-            <>{!loading && showEmpty ? <Empty /> : ""}</>
+            <>{!loading && showEmpty ? <Empty /> : ''}</>
           )}
 
           {loading ? (
             <Spin indicator={<LoadingOutlined spin />} size="large" />
           ) : (
-            ""
+            ''
           )}
 
           {paginationData.total > productList?.length ? (
@@ -132,7 +132,7 @@ export const Products = () => {
               </Button>
             </div>
           ) : (
-            ""
+            ''
           )}
         </div>
       </div>

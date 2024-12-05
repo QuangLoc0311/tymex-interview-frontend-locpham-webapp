@@ -26,7 +26,7 @@
     "paths": {
       "src/*": ["./src/*"],
       "assets": ["./src/assets/*"],
-      "configs": ["./src/configs/*"],
+      "configs": ["./src/configs/*"]
     }
   },
   "include": ["cypress", "src"]

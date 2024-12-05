@@ -1,127 +1,128 @@
 @use 'src/styles/variables.scss' as *;
 
 .container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
-    .child {
-        margin: -30px 20px 20px 20px;
-        display: flex;
-        justify-content: flex-start;
-        gap: 40px;
-        max-width: 1200px;
-    }
+  .child {
+    margin: -30px 20px 20px 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 40px;
+    max-width: 1200px;
+  }
 }
 
 .filter {
-    flex: 1;
-    
+  flex: 1;
 }
 
 .productContainer {
-    flex: 2.5;
+  flex: 2.5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .categoriesFilter {
+    margin-bottom: 20px;
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
 
-    .categoriesFilter {
-        margin-bottom: 20px;
-        width: 100%;
-        display: flex;
-        flex-wrap: wrap;
-        gap: 15px;
+    .cateItem {
+      cursor: pointer;
+      padding: 10px 16px;
+      color: #fff;
+      font-family: Inter;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: 24px;
+      border-radius: 4px;
+      transition: all linear 0.2s;
+      background: linear-gradient(
+        91deg,
+        rgba(218, 69, 143, 0.4) -6%,
+        rgba(218, 52, 221, 0.4) 113.05%
+      );
 
-        .cateItem {
-            cursor: pointer;
-            padding: 10px 16px;
-            color:  #FFF;
-            font-family: Inter;
-            font-size: 16px;
-            font-style: normal;
-            font-weight: 600;
-            line-height: 24px; 
-            border-radius: 4px;
-            transition: all linear .2s;
-            background: linear-gradient(91deg, rgba(218, 69, 143, 0.40) -6%, rgba(218, 52, 221, 0.40) 113.05%);
-        
-            &:hover {
-                background:  linear-gradient(91deg, #DA458F -6%, #DA34DD 113.05%);
-            }
-        }
-
-        .active {
-            background:  linear-gradient(91deg, #DA458F -6%, #DA34DD 113.05%);
-        }
+      &:hover {
+        background: linear-gradient(91deg, #da458f -6%, #da34dd 113.05%);
+      }
     }
 
+    .active {
+      background: linear-gradient(91deg, #da458f -6%, #da34dd 113.05%);
+    }
+  }
 }
 
 .products {
-    width: 100%;
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fill,minmax(215px,1fr));
-    overflow: auto;
-    overflow-x: hidden;
+  width: 100%;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fill, minmax(215px, 1fr));
+  overflow: auto;
+  overflow-x: hidden;
 }
 
 .viewMore {
-    margin-top: 40px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
+  margin-top: 40px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 
-    button {
-        width: 30%;
-    }
+  button {
+    width: 30%;
+  }
 }
 
 @media only screen and (max-width: $small-devices-size) {
-    .container {
-        .child {
-            gap: 20px;
-        }
+  .container {
+    .child {
+      gap: 20px;
     }
+  }
 }
 
 @media only screen and (max-width: $mobile-devices-size) {
-    .container {
-        .child {
-            margin: -30px 10px 20px 10px;
-            flex-direction: column;
-            gap: 10px;
-        }
+  .container {
+    .child {
+      margin: -30px 10px 20px 10px;
+      flex-direction: column;
+      gap: 10px;
     }
+  }
 
-    .filter {
-        padding: 0 10px;
+  .filter {
+    padding: 0 10px;
+  }
+
+  .productContainer {
+    padding: 0 10px;
+
+    .categoriesFilter {
+      margin-bottom: 20px;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+
+      .cateItem {
+        padding: 5px 10px;
+        font-size: 12px;
+        line-height: 18px;
+      }
     }
+  }
 
-    .productContainer {
-        padding: 0 10px;
-
-        .categoriesFilter {
-            margin-bottom: 20px;
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-
-            .cateItem {
-                padding: 5px 10px;
-                font-size: 12px;
-                line-height: 18px; 
-            
-            }
-        }
-    }
-
-    .products {
-        gap: 15px;
-        row-gap: 15px;
-        grid-template-columns: repeat(auto-fill,minmax(150px,1fr));
-    }
+  .products {
+    gap: 15px;
+    row-gap: 15px;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
 }

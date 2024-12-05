@@ -1,10 +1,10 @@
-import { BrowserRouter, Route, Routes } from "react-router";
-import { Products } from "./pages/Products/Products";
-import { Header } from "./components/Header/Header";
-import { Footer } from "./components/Footer/Footer";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
-import { Banner } from "./components/Banner/Banner";
-import { ConfigProvider, theme } from "antd";
+import { BrowserRouter, Route, Routes } from 'react-router';
+import { Products } from './pages/Products/Products';
+import { Header } from './components/Header/Header';
+import { Footer } from './components/Footer/Footer';
+import { CSSTransition, TransitionGroup } from 'react-transition-group';
+import { Banner } from './components/Banner/Banner';
+import { ConfigProvider, theme } from 'antd';
 
 function App() {
   return (
@@ -20,7 +20,7 @@ function App() {
               <Header />
               <Banner />
               <Routes>
-                <Route path={"/"} element={<Products />} />
+                <Route path={'/'} element={<Products />} />
               </Routes>
               <Footer />
             </div>

@@ -1,45 +1,45 @@
 @use 'src/styles/variables.scss' as *;
 
 .filterBlock {
-    margin-top: 20px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+
+  label {
+    color: #89888b;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 24px; /* 150% */
+    text-transform: uppercase;
+  }
+}
+
+.control {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: flex-start;
+}
+
+@media only screen and (max-width: $mobile-devices-size) {
+  .filterBlock {
+    margin-top: 10px;
     display: flex;
     flex-direction: column;
     gap: 15px;
 
     label {
-        color: #89888B;
-        font-family: Inter;
-        font-size: 16px;
-        font-style: normal;
-        font-weight: 600;
-        line-height: 24px; /* 150% */
-        text-transform: uppercase;
+      font-size: 12px;
+      line-height: 14px;
     }
-}
+  }
 
-.control {
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    justify-content: flex-start;
-}
-
-@media only screen and (max-width: $mobile-devices-size) {
-    .filterBlock {
-        margin-top: 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-    
-        label {
-            font-size: 12px;
-            line-height: 14px; 
-        }
-    }
-    
-    .control {
-        margin-top: 10px;
-        gap: 15px;
-    }
+  .control {
+    margin-top: 10px;
+    gap: 15px;
+  }
 }

@@ -1,5 +1,5 @@
-import BannerImage from "../../assets/banner.jpeg";
-import styles from "./styles.module.scss";
+import BannerImage from 'src/assets/banner.jpeg';
+import styles from './styles.module.scss';
 
 export const Banner = () => {
   return (

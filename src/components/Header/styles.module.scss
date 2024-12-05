@@ -1,54 +1,66 @@
 @use 'src/styles/variables.scss' as *;
 
 .header {
-    padding: 10px 20px;
-    position: sticky;
-    z-index: 100;
-    top:0;
-    display: flex;
-    justify-content: center;
-    background: rgba(23, 22, 26, 0.70);
+  padding: 10px 20px;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  background: rgba(23, 22, 26, 0.7);
 
-    .navigation {
-        .item {
-            cursor: pointer;
-            text-align: center;
-            font-size: 14px;
-            font-style: normal;
-            font-weight: 800;
-            line-height: 20px;
-            text-transform: uppercase;
-            a {
-                color: #FFF;
-            }
-        }
+  .navigation {
+    .item {
+      cursor: pointer;
+      text-align: center;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 800;
+      line-height: 20px;
+      text-transform: uppercase;
+      a {
+        color: #fff;
+      }
     }
+  }
+}
+
+.mobileContainer {
+  display: none;
 }
 
 .container {
-    max-width: 1200px;
-    width: 100%;
+  max-width: 1200px;
+  width: 100%;
 }
 
 @media only screen and (max-width: $mobile-devices-size) {
-   .header {
-        padding: 8px;
-        justify-content: flex-start;
-   }
+  .header {
+    padding: 8px;
+    justify-content: flex-start;
+  }
 
-   .headerOverlay {
-        position: fixed;
-        left: 0px;
-        top: 32px;
-        width: 100%;
-        height: 100%;
-        background: rgba(23, 22, 26, 1);
+  .container {
+    display: none;
+  }
 
-        .navigation {
-            padding: 20px;
-        }
-        .item {
-            padding: 20px 0;
-        }
-   }
+  .mobileContainer {
+    display: block;
+  }
+
+  .headerOverlay {
+    position: fixed;
+    left: 0px;
+    top: 32px;
+    width: 100%;
+    height: 100%;
+    background: rgba(23, 22, 26, 1);
+
+    .navigation {
+      padding: 20px;
+    }
+    .item {
+      padding: 20px 0;
+    }
+  }
 }

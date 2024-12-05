@@ -1,4 +1,4 @@
-import axios, { AxiosInstance } from "axios";
+import axios, { AxiosInstance } from 'axios';
 
 /**
  * The function `withErrorHandler` is a TypeScript function that adds error handling logic to an Axios
@@ -33,7 +33,7 @@ const withErrorHandler = (instance: AxiosInstance) => {
 };
 
 const baseUrlTransform = (url: string) => {
-  return import.meta.env.VITE_API_URL + "/api" + url;
+  return import.meta.env.VITE_API_URL + '/api' + url;
 };
 
 /**
@@ -46,8 +46,8 @@ const baseUrlTransform = (url: string) => {
 const useFetchWrapper = () => {
   const API = axios.create({
     headers: {
-      "Content-Type": "application/json",
-      Accept: "*/*",
+      'Content-Type': 'application/json',
+      Accept: '*/*',
     },
   });
   withErrorHandler(API);
